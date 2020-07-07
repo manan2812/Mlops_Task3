@@ -9,7 +9,11 @@ from keras.utils import np_utils
 import keras
 import sys
 
-dataset = mnist.load_data('mymnist.db')
+sys.stdin=open('/machinelearning/input.txt','r')
+
+# loading the MNIST dataset
+(x_train, y_train), (x_test, y_test)  = mnist.load_data()
+
 # Lets store the number of rows and columns
 img_rows = x_train[0].shape[0]
 img_cols = x_train[1].shape[0]
