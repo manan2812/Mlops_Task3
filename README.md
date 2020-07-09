@@ -67,6 +67,27 @@ In Job 2 configuration , Set Build Triggers to ->Build after other Projects are 
 JOB4 will monitor the accuracy of Model and if the accuracy of model is less then required accuracy then It will launch the *tweaker.py* program which will add extra Convolution Layers and Run JOB2 again to train model and JOB6 to send Email to the Developer “That accuracy is low, Running the Tweaker program”.
 And if the Model Acheived required accuracy JOB5 will run as JOB4 will get terminated by [exit 0] command.
 ![](Screenshots/Job4_config1.png)
+Write the following code in Execute shell space :
+
+if [[ "$(sudo cat /root/mlopsws/show_accuracy.txt)" < "0.987" ]]
+
+then
+
+echo "Twerking the model"
+
+sudo python3 /root/mlopsws
+
+sudo curl --user "admin:jenkins_password" http://IP_of_jenkins:8080/job/job6/build?token=redhat
+
+sudo curl --user "admin:jenkins_password" http://IP_of_jenkins:8080/job/job2/build?token=redhat
+
+exit 1
+
+else 
+
+exit 0
+
+fi
 
 As JOB4 will run again and again until desired accuracy is acheived, Our *show_display.html* file will also get changed by JOB3 and will show different accuracies and hyperparameters from each run of JOB2 model.
 ![](Screenshots/Job4_html.png)
