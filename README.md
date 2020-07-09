@@ -45,6 +45,8 @@ After saving the Dockerfile , run the following command to create image :
 # Step 6 :  Creating JOB2 in Jenkins
 By looking at the ML code or program file, this job will automatically start the respective machine learning software installed, Interpreter installed image container to deploy code and start training( eg. If code uses CNN, then Jenkins should start the container that has already installed all the softwares required for the CNN processing) i.e Run Docker Container from the Docker Image created in *Step 5*.
 
+![](screenshots/Job2_config.png)
+
 # Step 7 : Creating JOB3 in Jenkins
 JOB3 has a task to copy the [show_output.html] file from Parent Directory to /var/www/html which is the default directory for webpages in Apache Webserver.
 This [show_output.html] file will show us The hyperparameters used and the Accuracy of our model.
