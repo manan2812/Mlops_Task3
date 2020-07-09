@@ -1,5 +1,17 @@
 # AUTOMATION OF DEEP LEARNING MODEL WITH JENKINS
 
+Task Description
+- Create a container image that’s has Python3 ,Keras ,numpy and all the required libraries installed using dockerfile
+When we launch this image, it should automatically starts train the model in the container.
+- Create a job chain of job1, job2, job3, job4 and job5 using build pipeline plugin in Jenkins
+- Job1 : Pull the Github repo automatically when some developers push repo to Github.
+- Job2 : By looking at the code or program file, Jenkins should automatically start the respective machine learning software installed, Interpreter install image container to deploy code and start training( eg. If code uses CNN, then Jenkins should start the container that has already installed all the softwares required for the cnn processing).
+- Job3 : Display the Accuracy in webbrowser (locally connected)
+- Job4 : if metrics accuracy is less than 88% , then tweak the machine learning model architecture.
+- Job5: Retrain the model or notify that the best model is being created.
+- Job6: Will notify the developer that tweaking is started as model accuracy is less than required.
+- Create One extra job job7 for monitor : If container where app is running. fails due to any reason then this job should automatically start the container again from where the last trained model left
+
 TOOLS USED : 
 
 1. Git and Github- for version control and hosting our repository
