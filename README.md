@@ -44,8 +44,10 @@ After saving the Dockerfile , run the following command to create image :
 
 # Step 6 :  Creating JOB2 in Jenkins
 By looking at the ML code or program file, this job will automatically start the respective machine learning software installed, Interpreter installed image container to deploy code and start training( eg. If code uses CNN, then Jenkins should start the container that has already installed all the softwares required for the CNN processing) i.e Run Docker Container from the Docker Image created in *Step 5*.
+![](Screenshots/Job2_config.png)
 
-![](screenshots/Job2_config.png)
+This is the console output
+![](Screenshots/Job2_output.png)
 
 # Step 7 : Creating JOB3 in Jenkins
 JOB3 has a task to copy the [show_output.html] file from Parent Directory to /var/www/html which is the default directory for webpages in Apache Webserver.
@@ -56,23 +58,29 @@ Before going in Jenkins run following command to start httpd server in rhel
 *#systemctl start httpd*  
 
 In Job 2 configuration , Set Build Triggers to ->Build after other Projects are build->put JOB2 in it.
+![](Screenshots/Job3_config.png)
 
 # Step 8 : Creating JOB4 in Jenkins
 JOB4 will monitor the accuracy of Model and if the accuracy of model is less then required accuracy then It will launch the *tweaker.py* program which will add extra Convolution Layers and Run JOB2 again to train model and JOB6 to send Email to the Developer “That accuracy is low, Running the Tweaker program”.
 And if the Model Acheived required accuracy JOB5 will run as JOB4 will get terminated by [exit 0] command.
+![](Screenshots/Job4_config1.png)
 
 As JOB4 will run again and again until desired accuracy is acheived, Our *show_display.html* file will also get changed by JOB3 and will show different accuracies and hyperparameters from each run of JOB2 model.
+![](Screenshots/Job4_html.png)
 
 # Step 9 : Creating JOB5 in Jenkins
 After getting the desired accuracy from JOB2 model, JOB4 will get terminated and JOB5 will run. This job will run *success_mail.py* and send the notification of PROJECT COMPLETION to the developer.
+![](Screenshots/Job5_config.png)
 
 Python file to send email is in repo.Edit this code in Rhel and put your own Credentials.
 
 # Step 10 : Creating JOB6 in Jenkins
 When model does not acheive the desired accuracy, Then JOB4 will run JOB2 and JOB6. JOB6 will send the message of unsuccess and running the tweaking code by running *model_less_mail.py*
+![](Screenshots/Job6_config.png)
 
 # Step 11 : Creating JOB7 in Jenkins
 JOB7 will run Every Hour and check If Container where model is running or not. If it Fails due to any reason then this job will automatically start the container again from where the last trained model left
+![](Screenshots/Job7_config.png)
 
 We will Configure Poll SCM schedule for one hour
 
