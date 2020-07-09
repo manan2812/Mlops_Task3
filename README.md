@@ -32,6 +32,8 @@ To set Web-hooks, go to our git hub repository and then
 
 # Step 4 : Create JOB1 in Jenkins
 JOB1 will automatically pull the Github repo to a specified directory in our Rhel Os whenever developer pushes any new code.
+![](Screenshots/Job1.1.png)
+![](Screenshots/Job1.2.png)
 
 # Step 5 : Creating Our Own Docker Image
 To run our ML code in Docker container we have to create our own Docker Image with Centos as the base and all the required libraries and python36 installed within it.
