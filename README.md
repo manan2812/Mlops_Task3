@@ -39,6 +39,7 @@ JOB1 will automatically pull the Github repo to a specified directory in our Rhe
 To run our ML code in Docker container we have to create our own Docker Image with Centos as the base and all the required libraries and python36 installed within it.
 
 To create Docker image, we need to make a Dockerfile with the following code
+![](Screenshots/Dockerfile.png)
 
 After saving the Dockerfile , run the following command to create image :
 
